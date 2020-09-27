@@ -63,14 +63,20 @@ pyplot.plot(ht.history['loss'], label='train')
 pyplot.plot(ht.history['val_loss'], label='test')
 pyplot.legend()
 
-pyplot.subplot(212)
-pyplot.title('Accuracy')
-pyplot.plot(ht.history['acc'], label='train')
-pyplot.plot(ht.history['val_acc'], label='test')
-pyplot.legend()
-pyplot.show()
 
 cnn  =  keras . models . load_model ( 'model50epoc' );
+# test function
+def  testImage ( img ):
+    test_image  =  image.load_img ( img , target_size  = ( 64 , 64 ))
+    test_image  =  image.img_to_array ( test_image )
+    test_image  =  np.expand_dims ( test_image , axis  =  0 )
+    result  =  cnn.predict ( test_image )
+    training_set.class_indices
+    if  result [ 0 ] [ 0 ] ==  1 :
+        prediction  =  'thumbs up'
+    else :
+        prediction  =  'thumbs down'
+    print ( prediction )
 
 testImage ( '/content/Test31.jpg' );
 
