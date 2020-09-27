@@ -63,6 +63,13 @@ pyplot.plot(ht.history['loss'], label='train')
 pyplot.plot(ht.history['val_loss'], label='test')
 pyplot.legend()
 
+pyplot.subplot(212)
+pyplot.title('Accuracy')
+pyplot.plot(ht.history['acc'], label='train')
+pyplot.plot(ht.history['val_acc'], label='test')
+pyplot.legend()
+pyplot.show()
+
 
 cnn  =  keras . models . load_model ( 'model50epoc' );
 # test function
