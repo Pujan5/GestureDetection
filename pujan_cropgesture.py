@@ -21,13 +21,13 @@ train_datagen  =  ImageDataGenerator ( rescale  =  1. / 255 ,
                                    horizontal_flip  =  True )
 training_set  =  train_datagen . flow_from_directory ( '/content/thumbsUpOrDown/dataset/training_set' ,
                                                  target_size  = ( 64 , 64 ),
-                                                 batch_size  =  32 ,
+                                                 batch_size  =  1 ,
                                                  class_mode  =  'binary' )
 
 test_datagen = ImageDataGenerator(rescale = 1./255)
 test_set = test_datagen.flow_from_directory('dataset/test_set',
                                             target_size = (64, 64),
-                                            batch_size = 32,
+                                            batch_size = 1,
                                             class_mode = 'binary')
 
 cnn = tf.keras.models.Sequential()
@@ -39,7 +39,7 @@ cnn.add(tf.keras.layers.MaxPool2D(pool_size=2, strides=2))
 cnn.add(tf.keras.layers.Conv2D(filters=32, kernel_size=3, activation='relu'))
 cnn.add(tf.keras.layers.MaxPool2D(pool_size=2, strides=2))
 
-cnn.add(tf.keras.layers.Flatten())
+cnn.add(tf.keras.layers.GlobalMaxPool2D())
 cnn.add(tf.keras.layers.Dense(units=128, activation='relu'))
 cnn.add(tf.keras.layers.Dense(units=1, activation='sigmoid'))
 
